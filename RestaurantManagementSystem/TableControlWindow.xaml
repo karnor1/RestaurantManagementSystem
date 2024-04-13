@@ -1,0 +1,15 @@
+﻿<Window x:Class="RestaurantManagementSystem.TableControlWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RestaurantManagementSystem"
+        mc:Ignorable="d"
+        Title="TableControlWindow" Height="450" Width="800">
+    <Grid>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="335,40,0,0" VerticalAlignment="Top" Name="TableInfo_Label"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,101,0,0" TextWrapping="Wrap" Text="People count at the table" VerticalAlignment="Top"/>
+        <TextBox x:Name="PeopleCount_TextBox" HorizontalAlignment="Left" Margin="170,101,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="51"/>
+
+    </Grid>
+</Window>
