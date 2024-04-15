@@ -13,6 +13,12 @@
         public double Price { get; set; }
         public eProductCategory category { get; set; }
 
+        public override string ToString()
+            {
+
+            return $"{Name} price {Price}";
+            }
+
     }
 
     public interface Iproducts

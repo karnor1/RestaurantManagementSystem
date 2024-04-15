@@ -17,8 +17,7 @@
         <TextBlock x:Name="SelectedTableOrders" HorizontalAlignment="Left" Margin="130,25,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="480" Width="273" Grid.Column="1" Grid.ColumnSpan="2"/>
         <ListBox x:Name="productsListBox" Grid.Column="2" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ListBox_SelectionChanged" Margin="0,45,0,-45"/>
         <Button x:Name="AddProduct" Content="AddProduct" HorizontalAlignment="Left" Margin="267,174,0,0" VerticalAlignment="Top" Click="AddProduct_Click" Grid.Column="1"/>
-        <Button x:Name="ShowDrinks_Btton" Grid.Column="2" Content="Show Drinks" HorizontalAlignment="Left" Margin="0,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.29,-0.825" Click="ShowProducts_ButtonClicked"/>
-        <Button x:Name="ShowFood_Button" Grid.Column="2" Content="Show Food" HorizontalAlignment="Left" Margin="80,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.29,-0.825" Click="ShowProducts_ButtonClicked"/>
+        <Button Content="Table Settings" HorizontalAlignment="Left" Margin="67,146,0,0" VerticalAlignment="Top" Click="Button_Click"/>
 
     </Grid>
 </Window>

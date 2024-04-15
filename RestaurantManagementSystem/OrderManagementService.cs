@@ -36,7 +36,7 @@ namespace RestaurantManagementSystem
                         var servedproduct = order._servedProducts.FirstOrDefault(product => product.Name == _product.Name); // product already exists add quantity
                         if (servedproduct == null)
                         {
-                            order._servedProducts.Add(new ServedProducts { Name = _product.Name, Price = _product.Price, Quantity = 0 });
+                            order._servedProducts.Add(new ServedProducts { Name = _product.Name, Price = _product.Price, Quantity = 1 });
                         }
                         else
                         {
@@ -90,7 +90,7 @@ namespace RestaurantManagementSystem
 
 
             _orderList.Add(_order);
-
+            _table.isOccupied = true;
             connection.SaveData(_orderList);
 
 
@@ -103,10 +103,42 @@ namespace RestaurantManagementSystem
             _orderList = connection.GetData();
             Order order;
 
-            order = _orderList.FirstOrDefault(order => _table.id == _table.id);
+            order = _orderList.FirstOrDefault(order => order._table.id == _table.id);
+            if (order != null)
+            {
+                return order._servedProducts;
+            }
+            else return new List<ServedProducts>();
+        }
+        public Order GetOrderFromTable (Table _table)
+        {
+            var _orderList = new List<Order>();
+            _orderList = connection.GetData();
+            Order order;
 
-            return order._servedProducts;
+            order = _orderList.FirstOrDefault(order => (order._table.id == _table.id && !order.OrderClosed));
 
+            return order;
+        }
+        public bool CloseOrder(int _orderNumber)
+        {
+            Order order;
+
+            ServiceErrors err = new ServiceErrors();
+
+            var _orderList = new List<Order>();
+
+            _orderList = connection.GetData();
+
+
+            int index = _orderList.FindIndex(order => order.OrderNumber == _orderNumber);
+
+            _orderList[index].Closingtime = DateTime.Now;
+
+            _orderList[index].OrderClosed = true;
+
+            connection.SaveData(_orderList);
+            return true;
         }
 
 

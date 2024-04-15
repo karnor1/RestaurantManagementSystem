@@ -29,7 +29,7 @@ namespace RestaurantManagementSystem
         {
             if (!File.Exists(filePath)) { File.Create(filePath); }
 
-            string jsonData = JsonConvert.SerializeObject(data);
+            string jsonData = JsonConvert.SerializeObject(data, Formatting.Indented);
 
             File.WriteAllText(filePath, jsonData);
             return true;

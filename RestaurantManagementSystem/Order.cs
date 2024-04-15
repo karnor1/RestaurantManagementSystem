@@ -17,6 +17,7 @@ namespace RestaurantManagementSystem
         public DateTime Closingtime;
         public int OrderNumber;
         public Table _table;
+        public double TotalPrice;
 
 
         public bool OrderClosed { get; set; } = false;

@@ -13,13 +13,13 @@ namespace RestaurantManagementSystem
             this.TotalSeats = buttCountTotal;
             this.CurrentOccupiedSeats = buttCountCurrent;
             this.id = id;
-
         }
 
         public int id { get; set; }
         public bool isOccupied = false;
         public int TotalSeats = 0;
         public int CurrentOccupiedSeats = 0;
+        public Order activeOrder { get; set; }
     }
 
     public class TableReservation

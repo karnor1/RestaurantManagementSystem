@@ -42,6 +42,7 @@ namespace RestaurantManagementSystem
 
         };
 
+
         private void CreateTables()
         {
 
@@ -55,21 +56,51 @@ namespace RestaurantManagementSystem
             Button TableButton = (Button)sender;
             activeTable = (Table)TableButton.Tag;
 
-            if (activeTable != (Table)TableButton.Tag)
-            {
-                TableButton.Background = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-            }
+            CheckTableButtonColor(TablesGrid);
+
+           OrderManagementService orderManagementService = new OrderManagementService();
+           var activeOrder = orderManagementService.GetOrderFromTable(activeTable);
 
 
+
+            TableControlWindow _controlWindow = new TableControlWindow(activeTable, activeOrder);
+            _controlWindow.Show();
 
             Table _selectedtable = (Table)TableButton.Tag;
             SelectedTable_textBox.Text = $" Current people at the table {_selectedtable.CurrentOccupiedSeats}\n Max table capacity {_selectedtable.CurrentOccupiedSeats}\n Table ID {_selectedtable.id}";
 
-            PrintTableOrders((Table)TableButton.Tag);
 
 
             TableSelected((Table)TableButton.Tag);
 
+        }
+
+        void CheckTableButtonColor (object container)
+        {
+            if (container != null)
+            {
+                if (container is Grid TablesGrid)
+                {
+                    foreach (var item  in TablesGrid.Children)
+                    {
+                        if (item is Button  TableButton)
+                        {
+                            if (TableButton.Tag is Table buttonTag)
+                            {
+                                if (buttonTag.isOccupied)
+                                {
+                                    TableButton.Foreground = TableButton.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+
+                                }
+                                else TableButton.Foreground = TableButton.Foreground = new SolidColorBrush(Color.FromRgb(0, 30, 0));
+
+                            }
+                        }
+
+
+                    }
+                }
+            }
         }
 
         public void TableSelected(Table _tableSelected)
@@ -81,20 +112,7 @@ namespace RestaurantManagementSystem
 
         }
 
-        public void PrintTableOrders (Table _table)
-        {
-            if (_table != null)
-            {
-                OrderManagementService orderManagementService = new OrderManagementService();
 
-                var servedProducts= orderManagementService.GetOrdersFromTable(_table);
-                foreach (var product in servedProducts) 
-                {
-                    SelectedTableOrders.Text = $"Product {product.Name} Quantity : {product.Quantity}";
-                    SelectedTableOrders.Text += "\n";
-                }
-            }
-        }
 
         private void GetDatabas_Click(object sender, RoutedEventArgs e)
         {
@@ -102,9 +120,10 @@ namespace RestaurantManagementSystem
             Iproduct alus = new Product();
             alus.Name = " alus";
             alus.Price = 50;
-            orderManagementService.CreateOrder(new Table (5,3,0));
 
+            orderManagementService.CreateOrder(new Table (5,3,0));
             orderManagementService.AddProductToOrder(alus, 5);
+
             // Create a new button
 
         }
@@ -121,46 +140,17 @@ namespace RestaurantManagementSystem
 
 
         }
-        private void UpdateListBox(ListBox _listbox, eProductCategory _category)
-        {
-            _listbox.Items.Clear();
-            List<Product> _product;
-            ProductService _service = new ProductService();
-            _product = _service.GetProductList<Product>(_category);
-            UpdateListBox(productsListBox,_product);
 
-        }
-
-
-        private void UpdateListBox (ListBox _listbox, List< Product> _product)
-        {
-            _listbox.Items.Clear();
-            
-            foreach (var item in _product) 
-            {
-                _listbox.Items.Add($"{item.Name} {item.Price}");
-            }
-        }
-
-        private void ShowProducts_ButtonClicked(object sender, RoutedEventArgs e)
-        {
-            Button _btn = (Button)sender;
-            if (_btn != null )
-            {
-                if (_btn.Content.Equals("Show Drinks"))
-                {
-                    UpdateListBox(productsListBox, eProductCategory.Drink);
-                } else if (_btn.Content.Equals( "Show Food"))
-                {
-                    UpdateListBox(productsListBox, eProductCategory.Food);
-
-                }
-            }
-        }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             CreateTables();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var TableManagementWindow = new TableManagementWindow();
+            TableManagementWindow.Show();
         }
     }
 }
