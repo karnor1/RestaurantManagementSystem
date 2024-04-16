@@ -36,6 +36,7 @@ namespace RestaurantManagementSystem
                 try
                 {
                     _product.Price = double.Parse(this.ProductPrice_textBox.Text, System.Globalization.CultureInfo.InvariantCulture);
+                    _product.PriceForRestaurant = double.Parse(this.ProductPriceForRestaurant_TextBox.Text, System.Globalization.CultureInfo.InvariantCulture);
                 }
                 catch (ArgumentNullException)
                 {
@@ -55,6 +56,7 @@ namespace RestaurantManagementSystem
 
                 }
 
+                _product.DateAdded = DateTime.Now;
 
                 if (this.RadioButton_drink.IsChecked == true)
                 {

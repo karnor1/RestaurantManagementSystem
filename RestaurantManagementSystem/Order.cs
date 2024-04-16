@@ -13,11 +13,11 @@ namespace RestaurantManagementSystem
 {
     public class Order
     {
-        public DateTime CreationTime;
-        public DateTime Closingtime;
-        public int OrderNumber;
-        public Table _table;
-        public double TotalPrice;
+        public DateTime CreationTime { get; set; }
+        public DateTime Closingtime { get; set; }
+        public int OrderNumber { get; set; }
+        public Table _table { get; set; }
+        public double TotalPrice { get; set; }
 
 
         public bool OrderClosed { get; set; } = false;
@@ -36,19 +36,13 @@ namespace RestaurantManagementSystem
             OrderNumber = _id;
         }
 
-        public List<ServedProducts> _servedProducts;
+        public List<ServedProducts> _servedProducts { get; set; }
     }
 
 
 
 
-    public class ServedProducts : Iproduct
-    {
-        public string Name { get; set; } = "";
-        public double Price { get; set; } = 0;
-        public int Quantity { get; set; } = 0;
 
-    }
 
     public class ServiceErrors()
     {

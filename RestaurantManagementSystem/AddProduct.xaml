@@ -12,10 +12,12 @@
         <TextBlock HorizontalAlignment="Left" Margin="10,176,0,0" TextWrapping="Wrap" Text="Product category" VerticalAlignment="Top"/>
         <RadioButton x:Name="RadioButton_drink" Content="Drink" Margin="140,180,179,0" VerticalAlignment="Top"/>
         <RadioButton x:Name="RadioButton_Food" Content="Food" Margin="232,180,64,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="ProductName_textBox" HorizontalAlignment="Left" Margin="124,99,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="ProductPrice_textBox" HorizontalAlignment="Left" Margin="124,119,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="ProductName_textBox" HorizontalAlignment="Left" Margin="180,98,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="ProductPrice_textBox" HorizontalAlignment="Left" Margin="180,118,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <Button x:Name="SaveProduct_button" Content="SaveProduct" HorizontalAlignment="Left" Margin="241,236,0,0" VerticalAlignment="Top" Height="21" Click="SaveProduct_button_Click"/>
         <TextBlock x:Name="AddProductOutcome_Label" HorizontalAlignment="Left" Margin="39,239,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,147,0,0" TextWrapping="Wrap" Text="Product Price for restaurant" VerticalAlignment="Top"/>
+        <TextBox x:Name="ProductPriceForRestaurant_TextBox" HorizontalAlignment="Left" Margin="180,145,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
 
 
 

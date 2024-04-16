@@ -1,0 +1,29 @@
+﻿<Window x:Class="RestaurantManagementSystem.TableManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RestaurantManagementSystem"
+        mc:Ignorable="d"
+        Title="TableManagementWindow" Height="450" Width="800"
+        Name="tableManagementWindow">
+    
+    <Grid Name="MainGrid" SizeChanged="MainGrid_SizeChanged">
+        <Grid.LayoutTransform>
+            <ScaleTransform x:Name="ApplicationScaleTransform"
+                        CenterX="0"
+                        CenterY="0"
+                        ScaleX="{Binding ElementName=tableManagementWindow, Path=ScaleValue}"
+                        ScaleY="{Binding ElementName=tableManagementWindow, Path=ScaleValue}" />
+        </Grid.LayoutTransform>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="179*"/>
+            <ColumnDefinition Width="21*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock TextWrapping="Wrap" Text="Total Seats" Margin="-200,-350,0,0" Width="Auto" MaxWidth="100" Height="Auto" MaxHeight="20" Grid.ColumnSpan="2"/>
+        <TextBlock TextWrapping="Wrap" Text="Total Persons" Margin="-200,-240,0,0" Width="Auto" MaxWidth="100" Height="Auto" MaxHeight="20" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="TotalSeats_TextBox" Margin="-200,-300,0,0" TextWrapping="Wrap" Width="Auto" MaxWidth="100" Height="Auto" MaxHeight="20" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="TotalPersons_TextBox" Margin="-200,-200,0,0" TextWrapping="Wrap" Width="Auto" MaxWidth="100" Height="Auto" MaxHeight="20" Grid.ColumnSpan="2"/>
+    </Grid>
+
+</Window>

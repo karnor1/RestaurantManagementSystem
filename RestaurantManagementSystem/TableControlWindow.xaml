@@ -6,7 +6,14 @@
         xmlns:local="clr-namespace:RestaurantManagementSystem"
         mc:Ignorable="d"
         Title="TableControlWindow" Height="800" Width="1600">
-    <Grid Loaded="Grid_Loaded">
+    <Grid Loaded="Grid_Loaded" x:Name="buttonGrid">
+        <Grid.LayoutTransform>
+            <ScaleTransform x:Name="ApplicationScaleTransform"
+                        CenterX="0"
+                        CenterY="0"
+                        ScaleX="{Binding ElementName=tableManagementWindow, Path=ScaleValue}"
+                        ScaleY="{Binding ElementName=tableManagementWindow, Path=ScaleValue}" />
+        </Grid.LayoutTransform>
         <Label Content="Label" HorizontalAlignment="Left" Margin="335,40,0,0" VerticalAlignment="Top" Name="TableInfo_Label"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,101,0,0" TextWrapping="Wrap" Text="People count at the table" VerticalAlignment="Top"/>
         <TextBox x:Name="PeopleCount_TextBox" HorizontalAlignment="Left" Margin="170,101,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="51"/>

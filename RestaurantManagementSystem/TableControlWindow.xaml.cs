@@ -175,16 +175,21 @@ namespace RestaurantManagementSystem
             }
         }
 
+
         private void CloseOrder_Button_Click(object sender, RoutedEventArgs e)
         {
             if (activeTable.activeOrder != null)
             {
                 OrderManagementService orderManagementService = new OrderManagementService();
+                var _receipt = new Receipt(activeTable);
+                _receipt.PrintReceiptClient();
                 orderManagementService.CloseOrder(activeTable.activeOrder.OrderNumber);
 
                 this.CloseOrder_Button.IsEnabled = false;
                 this.CreateOrder_Button.IsEnabled = true;
             }
         }
+
+
     }
 }

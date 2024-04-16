@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace RestaurantManagementSystem
 {
-    public class Table
+    public class Table : ITable
     {
-        public Table (int buttCountTotal, int buttCountCurrent, int id)
+        public Table(int buttCountTotal, int buttCountCurrent, int id)
         {
             this.TotalSeats = buttCountTotal;
             this.CurrentOccupiedSeats = buttCountCurrent;
@@ -16,9 +16,9 @@ namespace RestaurantManagementSystem
         }
 
         public int id { get; set; }
-        public bool isOccupied = false;
-        public int TotalSeats = 0;
-        public int CurrentOccupiedSeats = 0;
+        public bool isOccupied { get; set; } = false;
+        public int TotalSeats { get; set; } = 0;
+        public int CurrentOccupiedSeats { get; set; } = 0;
         public Order activeOrder { get; set; }
     }
 
