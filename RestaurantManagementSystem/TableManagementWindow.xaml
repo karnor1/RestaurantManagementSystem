@@ -21,9 +21,12 @@
             <ColumnDefinition Width="21*"/>
         </Grid.ColumnDefinitions>
         <TextBlock TextWrapping="Wrap" Text="Total Seats" Margin="-200,-350,0,0" Width="Auto" MaxWidth="100" Height="Auto" MaxHeight="20" Grid.ColumnSpan="2"/>
+        <TextBlock TextWrapping="Wrap" Text="Table Number" Margin="10,-350,0,0" Width="Auto" MaxWidth="100" Height="Auto" MaxHeight="20" Grid.ColumnSpan="2"/>
         <TextBlock TextWrapping="Wrap" Text="Total Persons" Margin="-200,-240,0,0" Width="Auto" MaxWidth="100" Height="Auto" MaxHeight="20" Grid.ColumnSpan="2"/>
         <TextBox x:Name="TotalSeats_TextBox" Margin="-200,-300,0,0" TextWrapping="Wrap" Width="Auto" MaxWidth="100" Height="Auto" MaxHeight="20" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="TotalPersons_TextBox" Margin="-200,-200,0,0" TextWrapping="Wrap" Width="Auto" MaxWidth="100" Height="Auto" MaxHeight="20" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="Table_Number_TextBox" Margin="10,-300,0,0" TextWrapping="Wrap" Width="Auto" MaxWidth="100" Height="Auto" MaxHeight="20" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="TotalPersons_TextBox" Margin="-200,-187,0,-13" TextWrapping="Wrap" Width="Auto" MaxWidth="100" Height="Auto" MaxHeight="20" Grid.ColumnSpan="2" TextChanged="TotalPersons_TextBox_TextChanged"/>
+        <Button Content="AddTable" HorizontalAlignment="Left" Margin="250,145,0,0" VerticalAlignment="Top" Click="Button_Click"/>
     </Grid>
 
 </Window>

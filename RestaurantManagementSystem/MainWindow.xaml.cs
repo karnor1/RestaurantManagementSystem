@@ -28,19 +28,14 @@ namespace RestaurantManagementSystem
         public MainWindow()
         {
             InitializeComponent();
+            TableManagementService _tableService = new TableManagementService();
+
+            Tables = _tableService.LoadTablesInfo();
         }
-        
 
-        List<Table> Tables = new List<Table> 
-        { 
-            new Table(0, 5, 5),
-            new Table(0, 5, 4),
-            new Table(0, 5, 3),
-            new Table(0, 5, 2),
-            new Table(0, 5, 1),
-            new Table(0, 5, 0),
 
-        };
+        List<Table> Tables = new List<Table>() ;
+
 
 
         private void CreateTables()

@@ -19,9 +19,29 @@ namespace RestaurantManagementSystem
     /// </summary>
     public partial class ErrorWindow : Window
     {
-        public ErrorWindow()
+        public string ButtonPressed { get; private set; }
+
+        public ErrorWindow(string? b1, string? b2)
         {
             InitializeComponent();
+
+            if (b1 != null)
+            {
+                this.Button1.Visibility = Visibility.Visible;
+                this.Button1.Content = b1;
+            }
+            if (b2 != null)
+            {
+                this.Button2.Visibility = Visibility.Visible;
+                this.Button2.Content = b2;
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            ButtonPressed = button.Content.ToString();
+            this.DialogResult = true;
         }
     }
 }

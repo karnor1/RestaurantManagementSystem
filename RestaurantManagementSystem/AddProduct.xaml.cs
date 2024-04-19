@@ -27,7 +27,7 @@ namespace RestaurantManagementSystem
 
         private void SaveProduct_button_Click(object sender, RoutedEventArgs e)
         {
-            ErrorWindow _errorWindow = new ErrorWindow();
+            ErrorWindow _errorWindow = new ErrorWindow(null,null);
 
             Iproducts _product = new Product();
             _product.Name = this.ProductName_textBox.Text;

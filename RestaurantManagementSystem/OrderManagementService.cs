@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Windows.Controls;
 
 namespace RestaurantManagementSystem
 {
@@ -120,9 +121,9 @@ namespace RestaurantManagementSystem
 
             return order;
         }
-        public bool CloseOrder(int _orderNumber)
+        public IOrder CloseOrder(IOrder _order)
         {
-            Order order;
+            Order order = (Order)_order;
 
             ServiceErrors err = new ServiceErrors();
 
@@ -131,14 +132,31 @@ namespace RestaurantManagementSystem
             _orderList = connection.GetData();
 
 
-            int index = _orderList.FindIndex(order => order.OrderNumber == _orderNumber);
+            int index = _orderList.FindIndex(order => order.OrderNumber == order.OrderNumber && !order.OrderClosed);
 
-            _orderList[index].Closingtime = DateTime.Now;
+            order.OrderClosed = true;
+            order.Closingtime = DateTime.Now;
 
-            _orderList[index].OrderClosed = true;
 
+            _orderList[index] = order;
             connection.SaveData(_orderList);
-            return true;
+            return order;
+        }
+
+        public IOrder CalculateOrderTotals(IOrder closedOrder)
+        {
+            IOrder _closedOrder = closedOrder;
+
+                foreach (var item in _closedOrder._servedProducts)
+                {
+                    _closedOrder.TotalPriceForRestaurant += item.Quantity * item.PriceForRestaurant;
+                _closedOrder.TotalPrice += item.Quantity * item.Price;
+
+            }
+            _closedOrder.TotalProfitForRestaurant = _closedOrder.TotalPriceForRestaurant - _closedOrder.TotalPrice;
+                return _closedOrder;
+            
+
         }
 
 

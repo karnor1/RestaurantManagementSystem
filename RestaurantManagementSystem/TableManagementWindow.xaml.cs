@@ -82,5 +82,17 @@ namespace RestaurantManagementSystem
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            TableManagementService _tableManagementService = new TableManagementService();
+            var newTable = new Table(int.Parse(this.TotalSeats_TextBox.Text),0, int.Parse(this.Table_Number_TextBox.Text));
+            _tableManagementService.AddTable(newTable);
+        }
+
+        private void TotalPersons_TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

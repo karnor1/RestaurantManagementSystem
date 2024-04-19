@@ -34,6 +34,14 @@ namespace RestaurantManagementSystem
             File.WriteAllText(filePath, jsonData);
             return true;
         }
+        public bool SaveReceipt(string data)
+        {
+            if (!File.Exists(filePath)) { File.Create(filePath); }
+
+
+            File.WriteAllText(filePath, data);
+            return true;
+        }
 
     }
 

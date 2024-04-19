@@ -3,45 +3,62 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.IO;
 namespace RestaurantManagementSystem
 {
     class Receipt : ClientReceipt, IReceipt
     {
-        public Receipt(ITable _table) : base(_table)
+        //private static readonly string ClientsFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ReceiptDatabase.json");
+        private static readonly string RestaurantFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ReceiptDatabase.json");
+
+        //private DataBaseConnection<string> clientReceiptDatabase = new DataBaseConnection<string>(ClientsFilePath);
+        private DataBaseConnection<string> RestaurantReceiptDatabase = new DataBaseConnection<string>(RestaurantFilePath);
+
+
+        public Receipt(IOrder order) : base(order)
         {
 
         }
 
         public string PrintReceiptRestaurant()
         {
-            return "";
+            var receipt = new StringBuilder();
+            receipt.Append(PrintReceiptClient());
+            receipt.AppendLine($"Total price for restaurant {_order.TotalPriceForRestaurant}");
+            receipt.AppendLine($"Total profit {_order.TotalProfitForRestaurant}");
+            receipt.AppendLine($"Total profit {_order.TotalVAT}");
+            receipt.AppendLine($"Open time {_order.CreationTime}");
+            receipt.AppendLine($"Closing time {_order.Closingtime}");
+            return receipt.ToString();
         }
 
-
-
-
+        public void SaveToDataBase()
+        {
+            RestaurantReceiptDatabase.SaveReceipt (PrintReceiptRestaurant());
+        }
     }
 
     public class ClientReceipt
     {
-        public ITable _table;
-        public ClientReceipt(ITable _table)
+        public IOrder _order;
+        public ClientReceipt(IOrder order)
         {
-            this._table = _table;
+            this._order = order;
         }
 
         public string PrintReceiptClient()
         {
             var receipt = new StringBuilder();
             receipt.AppendLine("--------- RECEIPT ----------");
-            receipt.AppendLine($"Table ID {_table.id} \n Table person capacity {_table.TotalSeats} \n Actual perons at the table {_table.CurrentOccupiedSeats}");
-            foreach (var product in _table.activeOrder._servedProducts)
+            receipt.AppendLine($"Table ID {_order._table.id} \n Table person capacity {_order._table.TotalSeats} \n Actual perons at the table {_order._table.CurrentOccupiedSeats}");
+            foreach (var product in _order._servedProducts)
             {
-                receipt.AppendLine($" {product.Name} * {product.Quantity}");
-
+                receipt.AppendLine($" {product.Name} {product.Quantity}, {product.Price} = {product.Price*product.Quantity}");
             }
+            receipt.AppendLine($"Total price {_order.TotalPrice}");
+
             return receipt.ToString();
+
         }
 
 
@@ -51,6 +68,7 @@ namespace RestaurantManagementSystem
     {
         public string PrintReceiptClient();
         public string PrintReceiptRestaurant();
+        public void SaveToDataBase();
     }
 }
 

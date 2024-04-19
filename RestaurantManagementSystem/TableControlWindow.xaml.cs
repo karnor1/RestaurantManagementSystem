@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace RestaurantManagementSystem
 {
@@ -52,7 +53,6 @@ namespace RestaurantManagementSystem
 
             foreach (var item in _product)
             {
-                _listbox.Items.Add($"{item.Name} {item.Price}");
                 _listbox.Items.Add(item);
 
             }
@@ -169,9 +169,9 @@ namespace RestaurantManagementSystem
                 OrderManagementService orderManagementService = new OrderManagementService();
                 orderManagementService.CreateOrder(activeTable);
                 activeTable.activeOrder = orderManagementService.GetOrderFromTable(activeTable);
-                activeTable.isOccupied = true;
                 this.CloseOrder_Button.IsEnabled = true;
                 this.CreateOrder_Button.IsEnabled = false;
+
             }
         }
 
@@ -181,10 +181,33 @@ namespace RestaurantManagementSystem
             if (activeTable.activeOrder != null)
             {
                 OrderManagementService orderManagementService = new OrderManagementService();
-                var _receipt = new Receipt(activeTable);
-                _receipt.PrintReceiptClient();
-                orderManagementService.CloseOrder(activeTable.activeOrder.OrderNumber);
+                
 
+                 IOrder _closedOrder = orderManagementService.CalculateOrderTotals(activeTable.activeOrder);
+
+                _closedOrder = orderManagementService.CloseOrder((IOrder)_closedOrder);
+                activeTable.activeOrder = (Order)_closedOrder;
+
+               var _receipt = new Receipt(_closedOrder);
+
+                ErrorWindow ReceiptAsk = new ErrorWindow("yes", "No");
+                ReceiptAsk.ErrorLabel.Content = "Do client need a receipt?";
+                bool? result = ReceiptAsk.ShowDialog();
+
+                if (result == true && ReceiptAsk.ButtonPressed.Equals("yes"))
+                {
+                    ReceiptWindow receiptWindow = new ReceiptWindow();
+                    receiptWindow.Receipt_Label.Content = _receipt.PrintReceiptClient();
+                    receiptWindow.Show();
+                }
+                _receipt.SaveToDataBase();
+
+                activeTable.activeOrder = null;
+
+                ServedProducts_ListBox.Items.Clear();
+
+
+                
                 this.CloseOrder_Button.IsEnabled = false;
                 this.CreateOrder_Button.IsEnabled = true;
             }
