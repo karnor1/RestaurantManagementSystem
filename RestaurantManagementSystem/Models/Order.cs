@@ -12,7 +12,7 @@ using RestaurantManagementSystem.Interface;
 
 namespace RestaurantManagementSystem.Models
 {
-    public class Order : IOrder
+    public class Order
     {
 
         public DateTime CreationTime { get; set; }
@@ -54,12 +54,7 @@ namespace RestaurantManagementSystem.Models
         internal bool success = false;
         internal string message = "";
     }
-    public interface IOrderDatabaseParser<T>
-    {
-        List<T> GetData();
-        public bool SaveData<T>(T data);
 
-    }
     public class OrderDoesNotExist : Exception
     {
         public OrderDoesNotExist()

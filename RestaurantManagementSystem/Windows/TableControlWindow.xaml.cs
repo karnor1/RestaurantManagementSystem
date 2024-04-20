@@ -186,9 +186,9 @@ namespace RestaurantManagementSystem
                 OrderManagementService orderManagementService = new OrderManagementService();
                 
 
-                 IOrder _closedOrder = orderManagementService.CalculateOrderTotals(activeTable.activeOrder);
+                 var _closedOrder = orderManagementService.CalculateOrderTotals(activeTable.activeOrder);
 
-                _closedOrder = orderManagementService.CloseOrder((IOrder)_closedOrder);
+                _closedOrder = orderManagementService.CloseOrder(_closedOrder);
                 activeTable.activeOrder = (Order)_closedOrder;
 
                var _receipt = new Receipt(_closedOrder);

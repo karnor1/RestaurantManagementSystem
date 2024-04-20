@@ -5,7 +5,7 @@ using RestaurantManagementSystem.Models;
 
 namespace RestaurantManagementSystem.Services
 {
-    public class OrderManagementService()
+    public class OrderManagementService() : IOrderManagementService
     {
         private static readonly string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "OrderDataBase.json");
         private DataBaseConnection<Order> connection = new DataBaseConnection<Order>(FilePath);
@@ -123,7 +123,7 @@ namespace RestaurantManagementSystem.Services
 
             return order;
         }
-        public IOrder CloseOrder(IOrder _order)
+        public Order CloseOrder(Order _order)
         {
             Order order = (Order)_order;
 
@@ -145,9 +145,9 @@ namespace RestaurantManagementSystem.Services
             return order;
         }
 
-        public IOrder CalculateOrderTotals(IOrder closedOrder)
+        public Order CalculateOrderTotals(Order closedOrder)
         {
-            IOrder _closedOrder = closedOrder;
+            Order _closedOrder = closedOrder;
 
             foreach (var item in _closedOrder._servedProducts)
             {

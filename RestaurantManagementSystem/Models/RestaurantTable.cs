@@ -7,7 +7,7 @@ using RestaurantManagementSystem.Interface;
 
 namespace RestaurantManagementSystem.Models
 {
-    public class RestaurantTable : ITable
+    public class RestaurantTable
     {
         public RestaurantTable(int buttCountTotal, int buttCountCurrent, int id)
         {

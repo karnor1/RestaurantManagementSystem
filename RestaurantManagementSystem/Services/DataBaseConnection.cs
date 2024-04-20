@@ -1,10 +1,11 @@
 ﻿using System.IO;
 using Newtonsoft.Json;
+using RestaurantManagementSystem.Interface;
 using RestaurantManagementSystem.Models;
 
 namespace RestaurantManagementSystem.Services
 {
-    public class DataBaseConnection<T> : IOrderDatabaseParser<T>
+    public class DataBaseConnection<T> : IDataBaseConnection<T>
     {
         string filePath;
 

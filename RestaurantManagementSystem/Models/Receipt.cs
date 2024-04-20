@@ -17,7 +17,7 @@ namespace RestaurantManagementSystem.Models
         private DataBaseConnection<string> RestaurantReceiptDatabase = new DataBaseConnection<string>(RestaurantFilePath);
 
 
-        public Receipt(IOrder order) : base(order)
+        public Receipt(Order order) : base(order)
         {
 
         }
@@ -42,8 +42,8 @@ namespace RestaurantManagementSystem.Models
 
     public class ClientReceipt
     {
-        public IOrder _order;
-        public ClientReceipt(IOrder order)
+        public Order _order;
+        public ClientReceipt(Order order)
         {
             _order = order;
         }
