@@ -57,17 +57,10 @@ namespace RestaurantManagementSystem
             CheckTableButtonColor(TablesGrid);
 
            OrderManagementService orderManagementService = new OrderManagementService();
-           var activeOrder = orderManagementService.GetOrderFromTable(activeTable);
+            activeTable.activeOrder = orderManagementService.GetOrderFromTable(activeTable);
 
-
-
-            TableControlWindow _controlWindow = new TableControlWindow(activeTable, activeOrder);
+            TableControlWindow _controlWindow = new TableControlWindow(activeTable);
             _controlWindow.Show();
-
-            RestaurantTable _selectedtable = (RestaurantTable)TableButton.Tag;
-
-            SelectedTable_textBox.Text = $" Current people at the table {_selectedtable.CurrentOccupiedSeats}\n Max table capacity {_selectedtable.CurrentOccupiedSeats}\n Table ID {_selectedtable.id}";
-
 
 
             TableSelected((RestaurantTable)TableButton.Tag);
@@ -144,6 +137,8 @@ namespace RestaurantManagementSystem
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             CreateTables();
+            CheckTableButtonColor(TablesGrid);
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

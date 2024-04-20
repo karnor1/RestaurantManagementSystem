@@ -25,15 +25,17 @@ namespace RestaurantManagementSystem
     {
         RestaurantTable activeTable;
         Order? activeOrder;
+        TableManagementService _tableService = new TableManagementService();
+
 
         IOrderManagementService orderManagementService = new OrderManagementService();
 
-        public TableControlWindow(RestaurantTable activeTable, Order? activeOrder)
+        public TableControlWindow(RestaurantTable activeTable)
         {
             InitializeComponent();
             this.activeTable = activeTable;
-            this.activeOrder = activeOrder;
-            activeTable.activeOrder = activeOrder;
+            this.activeOrder = activeTable.activeOrder;
+ 
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -171,9 +173,10 @@ namespace RestaurantManagementSystem
             {
                 orderManagementService.CreateOrder(activeTable);
                 activeTable.activeOrder = orderManagementService.GetOrderFromTable(activeTable);
+                
                 this.CloseOrder_Button.IsEnabled = true;
                 this.CreateOrder_Button.IsEnabled = false;
-
+                _tableService.UpdateTableInfo(activeTable);
             }
         }
 
@@ -203,7 +206,8 @@ namespace RestaurantManagementSystem
                 _receipt.SaveToDataBase();
 
                 activeTable.activeOrder = null;
-
+                activeTable.isOccupied = false;
+                _tableService.UpdateTableInfo(activeTable);
                 ServedProducts_ListBox.Items.Clear();
 
 

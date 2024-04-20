@@ -28,6 +28,14 @@ namespace RestaurantManagementSystem.Services
             return TableDatabase.GetData();
         }
 
+        public void UpdateTableInfo(RestaurantTable _table)
+        {
+            var _tables = LoadTablesInfo();
+            int index = _tables.FindIndex(table => table.id == _table.id);
+            _tables[index] = _table;
+            SaveTablesInfo(_tables);
+        }
+
         public bool AddTable(RestaurantTable _table)
         {
             var _tables = LoadTablesInfo();
