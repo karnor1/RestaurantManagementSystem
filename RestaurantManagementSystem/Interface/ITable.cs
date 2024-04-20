@@ -1,4 +1,6 @@
-﻿namespace RestaurantManagementSystem
+﻿using RestaurantManagementSystem.Models;
+
+namespace RestaurantManagementSystem.Interface
 {
     public interface ITable
     {

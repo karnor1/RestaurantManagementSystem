@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using RestaurantManagementSystem.Models;
+using RestaurantManagementSystem.Services;
+
 
 namespace RestaurantManagementSystem
 {
@@ -86,7 +89,7 @@ namespace RestaurantManagementSystem
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             TableManagementService _tableManagementService = new TableManagementService();
-            var newTable = new Table(int.Parse(this.TotalSeats_TextBox.Text),0, int.Parse(this.Table_Number_TextBox.Text));
+            var newTable = new RestaurantTable(int.Parse(this.TotalSeats_TextBox.Text),0, int.Parse(this.Table_Number_TextBox.Text));
             _tableManagementService.AddTable(newTable);
         }
 

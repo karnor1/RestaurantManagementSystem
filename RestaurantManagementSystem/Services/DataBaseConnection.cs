@@ -1,7 +1,8 @@
 ﻿using System.IO;
 using Newtonsoft.Json;
+using RestaurantManagementSystem.Models;
 
-namespace RestaurantManagementSystem
+namespace RestaurantManagementSystem.Services
 {
     public class DataBaseConnection<T> : IOrderDatabaseParser<T>
     {
@@ -9,7 +10,7 @@ namespace RestaurantManagementSystem
 
         public DataBaseConnection(string _filepath)
         {
-             filePath = _filepath;
+            filePath = _filepath;
 
         }
 

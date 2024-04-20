@@ -1,4 +1,6 @@
-﻿namespace RestaurantManagementSystem
+﻿using RestaurantManagementSystem.Interface;
+
+namespace RestaurantManagementSystem.Models
 {
 
     public enum eProductCategory
@@ -27,7 +29,7 @@
         public string Name { get; set; }
         public double Price { get; set; }
         public eProductCategory category { get; set; }
-        public DateTime DateAdded {  get; set; }
+        public DateTime DateAdded { get; set; }
         public double PriceForRestaurant { get; set; }
 
     }

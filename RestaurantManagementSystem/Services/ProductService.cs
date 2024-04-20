@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using RestaurantManagementSystem.Models;
 
 
-namespace RestaurantManagementSystem
+namespace RestaurantManagementSystem.Services
 {
     internal class ProductService
     {

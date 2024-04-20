@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RestaurantManagementSystem.Interface;
 
-namespace RestaurantManagementSystem
+namespace RestaurantManagementSystem.Models
 {
-    public class Table : ITable
+    public class RestaurantTable : ITable
     {
-        public Table(int buttCountTotal, int buttCountCurrent, int id)
+        public RestaurantTable(int buttCountTotal, int buttCountCurrent, int id)
         {
-            this.TotalSeats = buttCountTotal;
-            this.CurrentOccupiedSeats = buttCountCurrent;
+            TotalSeats = buttCountTotal;
+            CurrentOccupiedSeats = buttCountCurrent;
             this.id = id;
         }
 

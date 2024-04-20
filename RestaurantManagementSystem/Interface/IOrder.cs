@@ -1,10 +1,11 @@
-﻿
-namespace RestaurantManagementSystem
+﻿using RestaurantManagementSystem.Models;
+
+namespace RestaurantManagementSystem.Interface
 {
     public interface IOrder
     {
         List<ServedProducts> _servedProducts { get; set; }
-        Table _table { get; set; }
+        RestaurantTable _table { get; set; }
         DateTime Closingtime { get; set; }
         DateTime CreationTime { get; set; }
         bool OrderClosed { get; set; }
@@ -21,7 +22,7 @@ namespace RestaurantManagementSystem
     public class ClosedOrder : IOrder
     {
         public List<ServedProducts> _servedProducts { get; set; }
-        public Table _table { get; set; }
+        public RestaurantTable _table { get; set; }
         public DateTime Closingtime { get; set; }
         public DateTime CreationTime { get; set; }
         public bool OrderClosed { get; set; }

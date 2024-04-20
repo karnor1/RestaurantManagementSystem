@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-namespace RestaurantManagementSystem
+using RestaurantManagementSystem.Services;
+using RestaurantManagementSystem.Interface;
+namespace RestaurantManagementSystem.Models
 {
     class Receipt : ClientReceipt, IReceipt
     {
@@ -34,7 +36,7 @@ namespace RestaurantManagementSystem
 
         public void SaveToDataBase()
         {
-            RestaurantReceiptDatabase.SaveReceipt (PrintReceiptRestaurant());
+            RestaurantReceiptDatabase.SaveReceipt(PrintReceiptRestaurant());
         }
     }
 
@@ -43,7 +45,7 @@ namespace RestaurantManagementSystem
         public IOrder _order;
         public ClientReceipt(IOrder order)
         {
-            this._order = order;
+            _order = order;
         }
 
         public string PrintReceiptClient()
@@ -53,7 +55,7 @@ namespace RestaurantManagementSystem
             receipt.AppendLine($"Table ID {_order._table.id} \n Table person capacity {_order._table.TotalSeats} \n Actual perons at the table {_order._table.CurrentOccupiedSeats}");
             foreach (var product in _order._servedProducts)
             {
-                receipt.AppendLine($" {product.Name} {product.Quantity}, {product.Price} = {product.Price*product.Quantity}");
+                receipt.AppendLine($" {product.Name} {product.Quantity}, {product.Price} = {product.Price * product.Quantity}");
             }
             receipt.AppendLine($"Total price {_order.TotalPrice}");
 

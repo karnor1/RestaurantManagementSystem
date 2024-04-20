@@ -1,7 +1,9 @@
 ﻿using System.IO;
 using System.Windows.Controls;
+using RestaurantManagementSystem.Interface;
+using RestaurantManagementSystem.Models;
 
-namespace RestaurantManagementSystem
+namespace RestaurantManagementSystem.Services
 {
     public class OrderManagementService()
     {
@@ -20,7 +22,7 @@ namespace RestaurantManagementSystem
             _orderList = connection.GetData();
 
 
-                order = _orderList.FirstOrDefault(order => order.OrderNumber == _orderNumber);
+            order = _orderList.FirstOrDefault(order => order.OrderNumber == _orderNumber);
             int index = _orderList.FindIndex(order => order.OrderNumber == _orderNumber);
 
 
@@ -67,14 +69,14 @@ namespace RestaurantManagementSystem
         }
 
 
-        internal ServiceErrors CreateOrder(Table _table)
+        internal ServiceErrors CreateOrder(RestaurantTable _table)
         {
             ServiceErrors err = new ServiceErrors();
 
             var _orderList = connection.GetData();
 
-            if (_orderList == null) 
-            { 
+            if (_orderList == null)
+            {
                 _orderList = new List<Order>();
             }
             int largestId;
@@ -85,7 +87,7 @@ namespace RestaurantManagementSystem
             }
             else largestId = 0;
 
-            var _order = new Order(_table, largestId+1);
+            var _order = new Order(_table, largestId + 1);
 
 
 
@@ -98,7 +100,7 @@ namespace RestaurantManagementSystem
             return err;
         }
 
-        public List<ServedProducts> GetOrdersFromTable(Table _table)
+        public List<ServedProducts> GetOrdersFromTable(RestaurantTable _table)
         {
             var _orderList = new List<Order>();
             _orderList = connection.GetData();
@@ -111,13 +113,13 @@ namespace RestaurantManagementSystem
             }
             else return new List<ServedProducts>();
         }
-        public Order GetOrderFromTable (Table _table)
+        public Order GetOrderFromTable(RestaurantTable _table)
         {
             var _orderList = new List<Order>();
             _orderList = connection.GetData();
             Order order;
 
-            order = _orderList.FirstOrDefault(order => (order._table.id == _table.id && !order.OrderClosed));
+            order = _orderList.FirstOrDefault(order => order._table.id == _table.id && !order.OrderClosed);
 
             return order;
         }
@@ -147,15 +149,15 @@ namespace RestaurantManagementSystem
         {
             IOrder _closedOrder = closedOrder;
 
-                foreach (var item in _closedOrder._servedProducts)
-                {
-                    _closedOrder.TotalPriceForRestaurant += item.Quantity * item.PriceForRestaurant;
+            foreach (var item in _closedOrder._servedProducts)
+            {
+                _closedOrder.TotalPriceForRestaurant += item.Quantity * item.PriceForRestaurant;
                 _closedOrder.TotalPrice += item.Quantity * item.Price;
 
             }
             _closedOrder.TotalProfitForRestaurant = _closedOrder.TotalPriceForRestaurant - _closedOrder.TotalPrice;
-                return _closedOrder;
-            
+            return _closedOrder;
+
 
         }
 

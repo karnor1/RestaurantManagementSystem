@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using RestaurantManagementSystem.Models;
 
-namespace RestaurantManagementSystem
+namespace RestaurantManagementSystem.Services
 {
     internal class TablesControler
     {
@@ -16,7 +17,7 @@ namespace RestaurantManagementSystem
 
         private ButtonCallback tableButtonClickedDelegate;
 
-        public TablesControler(Grid tablesGrid, ButtonCallback cb ) 
+        public TablesControler(Grid tablesGrid, ButtonCallback cb)
         {
             tableButtonClickedDelegate = cb;
             TableButtonGrid = tablesGrid;
@@ -24,7 +25,7 @@ namespace RestaurantManagementSystem
 
         private double offset = 0;
 
-        public void CreateTables(List<Table> Tables)
+        public void CreateTables(List<RestaurantTable> Tables)
         {
             foreach (var table in Tables)
             {
@@ -41,16 +42,16 @@ namespace RestaurantManagementSystem
 
                 Button tableButton = new Button();
                 tableButton.Content = "Table" + table.id;
-                tableButton.HorizontalAlignment = HorizontalAlignment.Stretch; 
-                tableButton.VerticalAlignment = VerticalAlignment.Stretch; 
+                tableButton.HorizontalAlignment = HorizontalAlignment.Stretch;
+                tableButton.VerticalAlignment = VerticalAlignment.Stretch;
                 tableButton.Tag = table;
 
-                tableButton.MinWidth = 10; 
+                tableButton.MinWidth = 10;
 
-                tableButton.MaxWidth = 100; 
+                tableButton.MaxWidth = 100;
                 tableButton.Height = 20;
 
-                tableButton.Margin = new Thickness(0, offset, 0, 0); 
+                tableButton.Margin = new Thickness(0, offset, 0, 0);
 
                 tableButton.Click += new RoutedEventHandler(tableButtonClickedDelegate);
 

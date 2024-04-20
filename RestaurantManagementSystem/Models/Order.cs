@@ -8,8 +8,9 @@ using System.Security.RightsManagement;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using RestaurantManagementSystem.Interface;
 
-namespace RestaurantManagementSystem
+namespace RestaurantManagementSystem.Models
 {
     public class Order : IOrder
     {
@@ -17,7 +18,7 @@ namespace RestaurantManagementSystem
         public DateTime CreationTime { get; set; }
         public DateTime Closingtime { get; set; }
         public int OrderNumber { get; set; }
-        public Table _table { get; set; }
+        public RestaurantTable _table { get; set; }
         public double TotalPrice { get; set; }
         public double TotalPriceForRestaurant { get; set; }
         public double TotalProfitForRestaurant { get; set; }
@@ -31,7 +32,7 @@ namespace RestaurantManagementSystem
         }
 
 
-        public Order(Table _table, int _id)
+        public Order(RestaurantTable _table, int _id)
         {
             this._table = _table;
             CreationTime = DateTime.Now;

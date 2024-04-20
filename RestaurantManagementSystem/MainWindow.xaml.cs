@@ -9,6 +9,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RestaurantManagementSystem.Interface;
+using RestaurantManagementSystem.Models;
+using RestaurantManagementSystem.Services;
 
 
 namespace RestaurantManagementSystem
@@ -18,7 +21,7 @@ namespace RestaurantManagementSystem
     /// </summary>
     public partial class MainWindow : Window
     {
-        Table activeTable;
+        RestaurantTable activeTable;
 
         public void TableButton_Clicked(object sender, RoutedEventArgs e)
         {
@@ -34,7 +37,7 @@ namespace RestaurantManagementSystem
         }
 
 
-        List<Table> Tables = new List<Table>() ;
+        List<RestaurantTable> Tables = new List<RestaurantTable>() ;
 
 
 
@@ -49,7 +52,7 @@ namespace RestaurantManagementSystem
         public void ButtonCallback(object sender, RoutedEventArgs e)
         {
             Button TableButton = (Button)sender;
-            activeTable = (Table)TableButton.Tag;
+            activeTable = (RestaurantTable)TableButton.Tag;
 
             CheckTableButtonColor(TablesGrid);
 
@@ -61,12 +64,12 @@ namespace RestaurantManagementSystem
             TableControlWindow _controlWindow = new TableControlWindow(activeTable, activeOrder);
             _controlWindow.Show();
 
-            Table _selectedtable = (Table)TableButton.Tag;
+            RestaurantTable _selectedtable = (RestaurantTable)TableButton.Tag;
             SelectedTable_textBox.Text = $" Current people at the table {_selectedtable.CurrentOccupiedSeats}\n Max table capacity {_selectedtable.CurrentOccupiedSeats}\n Table ID {_selectedtable.id}";
 
 
 
-            TableSelected((Table)TableButton.Tag);
+            TableSelected((RestaurantTable)TableButton.Tag);
 
         }
 
@@ -80,7 +83,7 @@ namespace RestaurantManagementSystem
                     {
                         if (item is Button  TableButton)
                         {
-                            if (TableButton.Tag is Table buttonTag)
+                            if (TableButton.Tag is RestaurantTable buttonTag)
                             {
                                 if (buttonTag.isOccupied)
                                 {
@@ -98,7 +101,7 @@ namespace RestaurantManagementSystem
             }
         }
 
-        public void TableSelected(Table _tableSelected)
+        public void TableSelected(RestaurantTable _tableSelected)
         {
             if (_tableSelected != null)
             {
@@ -116,7 +119,7 @@ namespace RestaurantManagementSystem
             alus.Name = " alus";
             alus.Price = 50;
 
-            orderManagementService.CreateOrder(new Table (5,3,0));
+            orderManagementService.CreateOrder(new RestaurantTable (5,3,0));
             orderManagementService.AddProductToOrder(alus, 5);
 
             // Create a new button

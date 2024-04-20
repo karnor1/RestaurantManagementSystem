@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
+using RestaurantManagementSystem.Models;
+using RestaurantManagementSystem.Services;
+using RestaurantManagementSystem.Interface;
 
 namespace RestaurantManagementSystem
 {
@@ -20,9 +23,9 @@ namespace RestaurantManagementSystem
     /// </summary>
     public partial class TableControlWindow : Window
     {
-        Table activeTable;
+        RestaurantTable activeTable;
         Order? activeOrder;
-        public TableControlWindow(Table activeTable, Order? activeOrder)
+        public TableControlWindow(RestaurantTable activeTable, Order? activeOrder)
         {
             InitializeComponent();
             this.activeTable = activeTable;
@@ -57,7 +60,7 @@ namespace RestaurantManagementSystem
 
             }
         }
-        public void PrintTableOrders(Table _table)
+        public void PrintTableOrders(RestaurantTable _table)
         {
             if (_table != null)
             {
@@ -81,7 +84,7 @@ namespace RestaurantManagementSystem
 
             }
         }
-        public void PrintTableOrdersFromDB(Table _table)
+        public void PrintTableOrdersFromDB(RestaurantTable _table)
         {
             if (_table != null)
             {
