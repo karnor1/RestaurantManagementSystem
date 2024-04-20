@@ -11,7 +11,7 @@ namespace RestaurantManagementSystem.Services
         private DataBaseConnection<Order> connection = new DataBaseConnection<Order>(FilePath);
 
 
-        internal ServiceErrors AddProductToOrder(Iproduct _product, int _orderNumber)
+        public ServiceErrors AddProductToOrder(Iproduct _product, int _orderNumber)
         {
             Order order;
 
@@ -69,7 +69,7 @@ namespace RestaurantManagementSystem.Services
         }
 
 
-        internal ServiceErrors CreateOrder(RestaurantTable _table)
+        public ServiceErrors CreateOrder(RestaurantTable _table)
         {
             ServiceErrors err = new ServiceErrors();
 

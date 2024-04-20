@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using RestaurantManagementSystem.Models;
+using RestaurantManagementSystem.Interface;
 
 namespace RestaurantManagementSystem.Services
 {
@@ -13,7 +14,7 @@ namespace RestaurantManagementSystem.Services
     {
         private static readonly string TablesDatabasePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TableDatabase.json");
 
-        private DataBaseConnection<RestaurantTable> TableDatabase = new DataBaseConnection<RestaurantTable>(TablesDatabasePath);
+        private IDataBaseConnection <RestaurantTable> TableDatabase = new DataBaseConnection<RestaurantTable>(TablesDatabasePath);
         public TableManagementService() { }
 
         public void SaveTablesInfo(List<RestaurantTable> _tablesList)

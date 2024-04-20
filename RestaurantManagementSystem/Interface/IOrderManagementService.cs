@@ -8,5 +8,8 @@ namespace RestaurantManagementSystem.Interface
         Order CloseOrder(Order _order);
         Order GetOrderFromTable(RestaurantTable _table);
         List<ServedProducts> GetOrdersFromTable(RestaurantTable _table);
+        ServiceErrors AddProductToOrder(Iproduct _product, int _orderNumber);
+        ServiceErrors CreateOrder(RestaurantTable _table);
+
     }
 }

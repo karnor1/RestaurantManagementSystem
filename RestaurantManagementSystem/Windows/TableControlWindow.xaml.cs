@@ -25,6 +25,9 @@ namespace RestaurantManagementSystem
     {
         RestaurantTable activeTable;
         Order? activeOrder;
+
+        IOrderManagementService orderManagementService = new OrderManagementService();
+
         public TableControlWindow(RestaurantTable activeTable, Order? activeOrder)
         {
             InitializeComponent();
@@ -81,7 +84,6 @@ namespace RestaurantManagementSystem
                     }
                     this.ServedProducts_ListBox.Items.Add($"\n Total Amount Of Order = {totalForOrder}");
                 }
-
             }
         }
         public void PrintTableOrdersFromDB(RestaurantTable _table)
@@ -89,7 +91,6 @@ namespace RestaurantManagementSystem
             if (_table != null)
             {
                 ServedProducts_ListBox.Items.Clear();
-                OrderManagementService orderManagementService = new OrderManagementService();
 
                 var servedProducts = orderManagementService.GetOrderFromTable(_table);
                 if (servedProducts == null)
@@ -153,7 +154,6 @@ namespace RestaurantManagementSystem
                 {
                     if (item is Iproduct product)
                     {
-                        OrderManagementService orderManagementService = new OrderManagementService();
                         orderManagementService.AddProductToOrder(product, activeTable.activeOrder.OrderNumber);
                         activeTable.activeOrder = orderManagementService.GetOrderFromTable(activeTable);
 
@@ -169,7 +169,6 @@ namespace RestaurantManagementSystem
         {
             if (activeTable.activeOrder == null)
             {
-                OrderManagementService orderManagementService = new OrderManagementService();
                 orderManagementService.CreateOrder(activeTable);
                 activeTable.activeOrder = orderManagementService.GetOrderFromTable(activeTable);
                 this.CloseOrder_Button.IsEnabled = true;
@@ -183,10 +182,8 @@ namespace RestaurantManagementSystem
         {
             if (activeTable.activeOrder != null)
             {
-                OrderManagementService orderManagementService = new OrderManagementService();
-                
 
-                 var _closedOrder = orderManagementService.CalculateOrderTotals(activeTable.activeOrder);
+                var _closedOrder = orderManagementService.CalculateOrderTotals(activeTable.activeOrder);
 
                 _closedOrder = orderManagementService.CloseOrder(_closedOrder);
                 activeTable.activeOrder = (Order)_closedOrder;

@@ -22,6 +22,7 @@ namespace RestaurantManagementSystem
     public partial class MainWindow : Window
     {
         RestaurantTable activeTable;
+        TableManagementService _tableService = new TableManagementService();
 
         public void TableButton_Clicked(object sender, RoutedEventArgs e)
         {
@@ -31,7 +32,6 @@ namespace RestaurantManagementSystem
         public MainWindow()
         {
             InitializeComponent();
-            TableManagementService _tableService = new TableManagementService();
 
             Tables = _tableService.LoadTablesInfo();
         }
@@ -65,6 +65,7 @@ namespace RestaurantManagementSystem
             _controlWindow.Show();
 
             RestaurantTable _selectedtable = (RestaurantTable)TableButton.Tag;
+
             SelectedTable_textBox.Text = $" Current people at the table {_selectedtable.CurrentOccupiedSeats}\n Max table capacity {_selectedtable.CurrentOccupiedSeats}\n Table ID {_selectedtable.id}";
 
 
