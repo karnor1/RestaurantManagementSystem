@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RestaurantManagementSystem"
         mc:Ignorable="d"
-        Title="TableControlWindow" Height="800" Width="1600">
-    <Grid Loaded="Grid_Loaded" x:Name="buttonGrid">
+        Title="TableControlWindow" Height="800" Width="872">
+    <Grid Loaded="Grid_Loaded" x:Name="buttonGrid" Margin="0,0,226,0">
         <Grid.LayoutTransform>
             <ScaleTransform x:Name="ApplicationScaleTransform"
                         CenterX="0"
@@ -14,16 +14,16 @@
                         ScaleX="{Binding ElementName=tableManagementWindow, Path=ScaleValue}"
                         ScaleY="{Binding ElementName=tableManagementWindow, Path=ScaleValue}" />
         </Grid.LayoutTransform>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="335,40,0,0" VerticalAlignment="Top" Name="TableInfo_Label"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,101,0,0" TextWrapping="Wrap" Text="People count at the table" VerticalAlignment="Top"/>
-        <TextBox x:Name="PeopleCount_TextBox" HorizontalAlignment="Left" Margin="170,101,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="51"/>
-        <ListBox x:Name="productsListBox" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ListBox_SelectionChanged" Margin="762,49,578,19"/>
-        <Button x:Name="ShowDrinks_Btton" Content="Show Drinks" HorizontalAlignment="Left" Margin="778,24,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.29,-0.825" Click="ShowProducts_ButtonClicked"/>
-        <Button x:Name="ShowFood_Button" Content="Show Food" HorizontalAlignment="Left" Margin="877,24,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.29,-0.825" Click="ShowProducts_ButtonClicked"/>
-        <ListBox x:Name="ServedProducts_ListBox" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ListBox_SelectionChanged" Margin="1112,49,228,19"/>
-        <Button Content="Add" HorizontalAlignment="Left" Margin="1050,196,0,0" VerticalAlignment="Top" Name="AddToServedProducts_Button" Click="AddToServedProducts_Button_Click"/>
-        <Button Content="Create Order" HorizontalAlignment="Left" Margin="388,101,0,0" VerticalAlignment="Top" Name="CreateOrder_Button" Click="CreateOrder_Button_Click"/>
-        <Button Content="Close Order" HorizontalAlignment="Left" Margin="477,102,0,0" VerticalAlignment="Top" Name="CloseOrder_Button" Click="CloseOrder_Button_Click"/>
+        <TextBox x:Name="PeopleCount_TextBox" HorizontalAlignment="Left" Margin="170,101,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="51" TextChanged="PeopleCount_TextBox_TextChanged"/>
+        <ListBox x:Name="productsListBox" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ListBox_SelectionChanged" Margin="260,34,176,34"/>
+        <Button x:Name="ShowDrinks_Btton" Content="Show Drinks" HorizontalAlignment="Left" Margin="486,61,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.29,-0.825" Click="ShowProducts_ButtonClicked"/>
+        <Button x:Name="ShowFood_Button" Content="Show Food" HorizontalAlignment="Left" Margin="486,86,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.29,-0.825" Click="ShowProducts_ButtonClicked"/>
+        <ListBox x:Name="ServedProducts_ListBox" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ListBox_SelectionChanged" Margin="616,34,-198,34"/>
+        <Button Content="AddToServedProducts_Button" HorizontalAlignment="Left" Margin="486,206,0,0" VerticalAlignment="Top" Name="AddToServedProducts_Button" Click="AddToServedProducts_Button_Click" Width="112"/>
+        <Button Content="Create Order" HorizontalAlignment="Left" Margin="21,130,0,0" VerticalAlignment="Top" Name="CreateOrder_Button" Click="CreateOrder_Button_Click"/>
+        <Button Content="Close Order" HorizontalAlignment="Left" Margin="117,130,0,0" VerticalAlignment="Top" Name="CloseOrder_Button" Click="CloseOrder_Button_Click"/>
+        <Label Content="" HorizontalAlignment="Left" Margin="19,16,0,0" VerticalAlignment="Top" Name="TableInfo_Label"/>
 
 
     </Grid>

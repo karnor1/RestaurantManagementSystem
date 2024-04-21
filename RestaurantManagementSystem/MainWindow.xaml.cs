@@ -82,7 +82,6 @@ namespace RestaurantManagementSystem
                                 if (buttonTag.isOccupied)
                                 {
                                     TableButton.Foreground = TableButton.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-
                                 }
                                 else TableButton.Foreground = TableButton.Foreground = new SolidColorBrush(Color.FromRgb(0, 30, 0));
 

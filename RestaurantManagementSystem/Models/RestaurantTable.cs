@@ -21,6 +21,8 @@ namespace RestaurantManagementSystem.Models
         public int TotalSeats { get; set; } = 0;
         public int CurrentOccupiedSeats { get; set; } = 0;
         public Order activeOrder { get; set; }
+
+
     }
 
     public class TableReservation

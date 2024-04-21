@@ -137,6 +137,8 @@ namespace RestaurantManagementSystem
             {
                 this.CloseOrder_Button.IsEnabled = true;
                 this.CreateOrder_Button.IsEnabled = false;
+                this.PeopleCount_TextBox.Text = activeTable.CurrentOccupiedSeats.ToString();
+               // this.TableInfo_Label.Content = activeTable.ToString();
             }
             else
             {
@@ -171,6 +173,37 @@ namespace RestaurantManagementSystem
         {
             if (activeTable.activeOrder == null)
             {
+
+                try
+                {
+                    activeTable.CurrentOccupiedSeats =(int)UInt16.Parse(this.PeopleCount_TextBox.Text);
+
+                    if (activeTable.TotalSeats < activeTable.CurrentOccupiedSeats)
+                    {
+                        activeTable.CurrentOccupiedSeats = 0;
+                        throw new ArgumentException();
+                    }
+
+                }
+                catch (ArgumentException ex)
+                {
+                    this.PeopleCount_TextBox.Background = new SolidColorBrush(Color.FromRgb(200, 0, 0));
+                    ErrorWindow errorWindow = new ErrorWindow(null, null);
+                    errorWindow.ErrorLabel.Content = $"This table seats capacity is lower \n than current persons at the table \n max seats capacity {activeTable.TotalSeats} ";
+                    errorWindow.Show();
+
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    this.PeopleCount_TextBox.Background = new SolidColorBrush(Color.FromRgb(200, 0, 0));
+                    ErrorWindow errorWindow = new ErrorWindow(null, null);
+                    errorWindow.ErrorLabel.Content =  "Please check current people at the table input \n "+ex.Message ;
+                    errorWindow.Show();
+
+                    return;
+                }
+
                 orderManagementService.CreateOrder(activeTable);
                 activeTable.activeOrder = orderManagementService.GetOrderFromTable(activeTable);
                 
@@ -203,8 +236,8 @@ namespace RestaurantManagementSystem
                     receiptWindow.Receipt_Label.Content = _receipt.PrintReceiptClient();
                     receiptWindow.Show();
                 }
-                _receipt.SaveToDataBase();
 
+                _receipt.SaveToDataBase();
                 activeTable.activeOrder = null;
                 activeTable.isOccupied = false;
                 _tableService.UpdateTableInfo(activeTable);
@@ -217,6 +250,10 @@ namespace RestaurantManagementSystem
             }
         }
 
+        private void PeopleCount_TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            this.PeopleCount_TextBox.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
 
+        }
     }
 }
