@@ -51,7 +51,6 @@ namespace RestaurantManagementSystem
             ProductService _service = new ProductService();
             _product = _service.GetProductList<Product>(_category);
             UpdateListBox(productsListBox, _product);
-
         }
 
 
@@ -65,6 +64,7 @@ namespace RestaurantManagementSystem
 
             }
         }
+
         public void PrintTableOrders(RestaurantTable _table)
         {
             if (_table != null)
@@ -88,29 +88,7 @@ namespace RestaurantManagementSystem
                 }
             }
         }
-        public void PrintTableOrdersFromDB(RestaurantTable _table)
-        {
-            if (_table != null)
-            {
-                ServedProducts_ListBox.Items.Clear();
 
-                var servedProducts = orderManagementService.GetOrderFromTable(_table);
-                if (servedProducts == null)
-                {
-                    this.ServedProducts_ListBox.Items.Add($"No order from this table");
-
-                }
-                else
-                {
-                    foreach (var product in servedProducts._servedProducts)
-                    {
-                        this.ServedProducts_ListBox.Items.Add($"Product {product.Name} Quantity : {product.Quantity}");
-
-                    }
-                }
-
-            }
-        }
 
         private void ShowProducts_ButtonClicked(object sender, RoutedEventArgs e)
         {
@@ -138,7 +116,7 @@ namespace RestaurantManagementSystem
                 this.CloseOrder_Button.IsEnabled = true;
                 this.CreateOrder_Button.IsEnabled = false;
                 this.PeopleCount_TextBox.Text = activeTable.CurrentOccupiedSeats.ToString();
-               // this.TableInfo_Label.Content = activeTable.ToString();
+                this.TableInfo_Label.Content = activeTable.ToString();
             }
             else
             {
@@ -156,7 +134,7 @@ namespace RestaurantManagementSystem
             {
                 if (activeTable.activeOrder != null)
                 {
-                    if (item is Iproduct product)
+                    if (item is Product product)
                     {
                         orderManagementService.AddProductToOrder(product, activeTable.activeOrder.OrderNumber);
                         activeTable.activeOrder = orderManagementService.GetOrderFromTable(activeTable);

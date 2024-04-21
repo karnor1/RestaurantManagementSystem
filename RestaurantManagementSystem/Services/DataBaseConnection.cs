@@ -41,7 +41,7 @@ namespace RestaurantManagementSystem.Services
             if (!File.Exists(filePath)) { File.Create(filePath); }
 
 
-            File.WriteAllText(filePath, data);
+            File.AppendAllText(filePath, data);
             return true;
         }
 

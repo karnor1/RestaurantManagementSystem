@@ -28,7 +28,7 @@ namespace RestaurantManagementSystem.Models
             receipt.Append(PrintReceiptClient());
             receipt.AppendLine($"Total price for restaurant {_order.TotalPriceForRestaurant}");
             receipt.AppendLine($"Total profit {_order.TotalProfitForRestaurant}");
-            receipt.AppendLine($"Total profit {_order.TotalVAT}");
+            receipt.AppendLine($"Total VAT {_order.TotalVAT}");
             receipt.AppendLine($"Open time {_order.CreationTime}");
             receipt.AppendLine($"Closing time {_order.Closingtime}");
             return receipt.ToString();

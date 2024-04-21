@@ -11,7 +11,7 @@ namespace RestaurantManagementSystem.Services
         private DataBaseConnection<Order> connection = new DataBaseConnection<Order>(FilePath);
 
 
-        public ServiceErrors AddProductToOrder(Iproduct _product, int _orderNumber)
+        public ServiceErrors AddProductToOrder(Product _product, int _orderNumber)
         {
             Order order;
 
@@ -39,7 +39,7 @@ namespace RestaurantManagementSystem.Services
                         var servedproduct = order._servedProducts.FirstOrDefault(product => product.Name == _product.Name); // product already exists add quantity
                         if (servedproduct == null)
                         {
-                            order._servedProducts.Add(new ServedProducts { Name = _product.Name, Price = _product.Price, Quantity = 1 });
+                            order._servedProducts.Add(new ServedProducts { Name = _product.Name, Price = _product.Price, Quantity = 1, PriceForRestaurant = _product.PriceForRestaurant });
                         }
                         else
                         {
@@ -155,7 +155,9 @@ namespace RestaurantManagementSystem.Services
                 _closedOrder.TotalPrice += item.Quantity * item.Price;
 
             }
-            _closedOrder.TotalProfitForRestaurant = _closedOrder.TotalPriceForRestaurant - _closedOrder.TotalPrice;
+            _closedOrder.TotalVAT = _closedOrder.TotalPrice * 0.21;
+
+            _closedOrder.TotalProfitForRestaurant = _closedOrder.TotalPrice - _closedOrder.TotalPriceForRestaurant ;
             return _closedOrder;
 
 

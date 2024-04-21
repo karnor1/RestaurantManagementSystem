@@ -107,15 +107,15 @@ namespace RestaurantManagementSystem
 
         private void GetDatabas_Click(object sender, RoutedEventArgs e)
         {
-            OrderManagementService orderManagementService = new OrderManagementService();
-            Iproduct alus = new Product();
-            alus.Name = " alus";
-            alus.Price = 50;
+            //OrderManagementService orderManagementService = new OrderManagementService();
+            //Iproduct alus = new Product();
+            //alus.Name = " alus";
+            //alus.Price = 50;
 
-            orderManagementService.CreateOrder(new RestaurantTable (5,3,0));
-            orderManagementService.AddProductToOrder(alus, 5);
+            //orderManagementService.CreateOrder(new RestaurantTable (5,3,0));
+            //orderManagementService.AddProductToOrder(alus, 5);
 
-            // Create a new button
+            //// Create a new button
 
         }
 

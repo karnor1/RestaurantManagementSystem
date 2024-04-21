@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using RestaurantManagementSystem.Interface;
 
 namespace RestaurantManagementSystem.Models
@@ -22,7 +24,11 @@ namespace RestaurantManagementSystem.Models
         public int CurrentOccupiedSeats { get; set; } = 0;
         public Order activeOrder { get; set; }
 
-
+        public override string ToString()
+        {
+            return $"{id} occupation {isOccupied} \n" +
+                $"Total Seats {TotalSeats}, Current persons {CurrentOccupiedSeats}";
+        }
     }
 
     public class TableReservation
