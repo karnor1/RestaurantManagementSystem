@@ -100,6 +100,12 @@ namespace RestaurantManagementSystem.Services
             return err;
         }
 
+        public List<Order> GetOrdersFromDB()
+        {
+            return  connection.GetData();
+
+        }
+
         public List<ServedProducts> GetOrdersFromTable(RestaurantTable _table)
         {
             var _orderList = new List<Order>();

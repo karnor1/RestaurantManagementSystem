@@ -74,6 +74,7 @@ namespace RestaurantManagementSystem
                 if (_table.activeOrder == null)
                 {
                     this.ServedProducts_ListBox.Items.Add($"No order from this table");
+                    this.ServedProducts_ListBox.IsEnabled = false; ;
 
                 }
                 else

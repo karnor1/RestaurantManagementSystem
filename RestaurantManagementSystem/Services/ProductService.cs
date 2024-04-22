@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using RestaurantManagementSystem.Models;
+using RestaurantManagementSystem.Interface;
 
 
 namespace RestaurantManagementSystem.Services
 {
-    internal class ProductService
+    internal class ProductService : IProductService
     {
         private static readonly string DrinksPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DrinksDatabase.json");
         private static readonly string FoodPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "FoodDatabase.json");

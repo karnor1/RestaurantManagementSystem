@@ -1,0 +1,22 @@
+﻿<Window x:Class="RestaurantManagementSystem.StatisticsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RestaurantManagementSystem"
+        mc:Ignorable="d"
+        Title="StatisticsWindow" Height="450" Width="567">
+    <Grid>
+        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="234,21,89,-21" Name="Statistics_ListBox"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="234,20,0,0" VerticalAlignment="Top" Height="240" Width="244" Name="Statistics_Label"/>
+        <Button Content="Show Financials" HorizontalAlignment="Left" Margin="24,60,0,0" VerticalAlignment="Top" Click="ShowFinancials_Click"/>
+        <Button Content="Show table occupancy" HorizontalAlignment="Left" Margin="24,95,0,0" VerticalAlignment="Top" Click="ShowTableOccupancy_Click_1"/>
+        <Button Content="Show new products" HorizontalAlignment="Left" Margin="24,130,0,0" VerticalAlignment="Top" Click="ShowNewProducts_Click_2"/>
+        <DatePicker HorizontalAlignment="Left" Margin="87,171,0,0" VerticalAlignment="Top" Name="DateFrom" Text="From" AutomationProperties.HelpText="Select from date"/>
+        <DatePicker HorizontalAlignment="Left" Margin="87,200,0,0" VerticalAlignment="Top" Name ="DateTo" Text=" To"/>
+        <Label Content="DateFrom" HorizontalAlignment="Left" Margin="20,171,0,0" VerticalAlignment="Top"/>
+        <Label Content="Date To" HorizontalAlignment="Left" Margin="24,200,0,0" VerticalAlignment="Top"/>
+
+
+    </Grid>
+</Window>

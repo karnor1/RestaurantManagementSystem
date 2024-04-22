@@ -23,6 +23,9 @@ namespace RestaurantManagementSystem
     {
         RestaurantTable activeTable;
         TableManagementService _tableService = new TableManagementService();
+        IProductService _productService = new ProductService();
+
+        IOrderManagementService orderManagementService = new OrderManagementService();
 
         public void TableButton_Clicked(object sender, RoutedEventArgs e)
         {
@@ -56,7 +59,6 @@ namespace RestaurantManagementSystem
 
             CheckTableButtonColor(TablesGrid);
 
-           OrderManagementService orderManagementService = new OrderManagementService();
             activeTable.activeOrder = orderManagementService.GetOrderFromTable(activeTable);
 
             TableControlWindow _controlWindow = new TableControlWindow(activeTable);
@@ -107,15 +109,6 @@ namespace RestaurantManagementSystem
 
         private void GetDatabas_Click(object sender, RoutedEventArgs e)
         {
-            //OrderManagementService orderManagementService = new OrderManagementService();
-            //Iproduct alus = new Product();
-            //alus.Name = " alus";
-            //alus.Price = 50;
-
-            //orderManagementService.CreateOrder(new RestaurantTable (5,3,0));
-            //orderManagementService.AddProductToOrder(alus, 5);
-
-            //// Create a new button
 
         }
 
@@ -137,6 +130,8 @@ namespace RestaurantManagementSystem
         {
             CreateTables();
             CheckTableButtonColor(TablesGrid);
+            UpdateFullProductListBox();
+
 
         }
 
@@ -144,6 +139,32 @@ namespace RestaurantManagementSystem
         {
             var TableManagementWindow = new TableManagementWindow();
             TableManagementWindow.Show();
+        }
+
+        private void UpdateFullProductListBox()
+        {
+            productsListBox.Items.Clear();
+
+            var productList = _productService.GetProductList<Product>(eProductCategory.Drink);
+            productList.AddRange(_productService.GetProductList<Product>(eProductCategory.Food));
+
+
+            foreach (var item in productList)
+            {
+                productsListBox.Items.Add(item);
+
+            }
+        }
+
+        private void Window_GotFocus(object sender, RoutedEventArgs e)
+        {
+            UpdateFullProductListBox();
+        }
+
+        private void Statistics_Click(object sender, RoutedEventArgs e)
+        {
+            StatisticsWindow statisticsWindow = new StatisticsWindow(orderManagementService,_productService);
+            statisticsWindow.Show();
         }
     }
 }

@@ -10,6 +10,8 @@ namespace RestaurantManagementSystem.Interface
         List<ServedProducts> GetOrdersFromTable(RestaurantTable _table);
         ServiceErrors AddProductToOrder(Product _product, int _orderNumber);
         ServiceErrors CreateOrder(RestaurantTable _table);
+        List<Order> GetOrdersFromDB();
+
 
     }
 }

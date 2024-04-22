@@ -5,17 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RestaurantManagementSystem"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1000" Width="698" Loaded="Window_Loaded">
+        Title="MainWindow" Height="1000" Width="698" Loaded="Window_Loaded" GotFocus="Window_GotFocus">
     <Grid x:Name="TablesGrid" Margin="44,8,130,-8">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="GetDatabas" Content="Button" HorizontalAlignment="Left" Margin="155,179,0,0" VerticalAlignment="Top" Click="GetDatabas_Click"/>
-        <ListBox x:Name="productsListBox" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ListBox_SelectionChanged" Margin="106,10,-66,-10" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <Button x:Name="AddProduct" Content="AddProduct" HorizontalAlignment="Left" Margin="175,141,0,0" VerticalAlignment="Top" Click="AddProduct_Click"/>
-        <Button Content="Table Settings" HorizontalAlignment="Left" Margin="67,146,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <ListBox x:Name="productsListBox" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ListBox_SelectionChanged" Margin="106,10,-66,-10" Grid.ColumnSpan="2" Grid.Column="1" IsEnabled="False"/>
+        <Button x:Name="AddProduct" Content="AddProduct" HorizontalAlignment="Left" Margin="171,39,0,0" VerticalAlignment="Top" Click="AddProduct_Click" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}"/>
+        <Button x:Name="Statistics" Content="Statistics" HorizontalAlignment="Left" Margin="26,63,0,0" VerticalAlignment="Top" Click="Statistics_Click" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}"/>
+
+        <Button Content="Table Settings" HorizontalAlignment="Left" Margin="27,39,0,0" VerticalAlignment="Top" Click="Button_Click" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}"/>
+        <Border BorderBrush="Black" BorderThickness="2" Margin="0,22,0,896"/>
 
     </Grid>
 </Window>
